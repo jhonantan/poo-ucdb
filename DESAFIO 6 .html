@@ -1,0 +1,101 @@
+<html>
+  
+    <body>
+      Nome
+        <Input type= "String" id="NM" value="">
+      Idade
+        <Input type= "number" id="IDD" value="">
+
+         <input type="radio" name="genero" value="m"> Masculino
+         <input type="radio" name="genero" value="f"> Feminino    
+          
+    <button type= "button" id="btn" onclick="adciona()"> Adicionar</button>      
+    <button type= "button" id="btn2" onclick="ListarM()"> ListarMulheres </button>
+    <button type= "button" id="btn3" onclick="ListarH()"> ListarHomem </button>
+    <button type= "button" id="btn4" onclick="ListarA()"> ListarAdultos </button>
+    <button type= "button" id="btn5" onclick="ListarADLC()"> ListarAdolescente </button>
+    <button type= "button" id="btn6" onclick="ListarC()"> ListarCriança </button>
+    <button type= "button" id="btn7" onclick="ListarI()"> ListarIdoso </button>
+
+    <label id ="saida"></label>
+
+    <script>
+        let array=[];
+        let genero = "";
+        let idad
+
+        function adiciona() {
+
+
+            genero = document.querySelector('input[name="genero"]:checked').value;
+            let nome = document.getElementById("nome").value;
+            array.push({ nome: nome, genero: genero });
+
+         
+
+          {
+         function ListarM(){
+            for (let i = 0; i < array.length; i++) {
+                if (array[i].genero == "f") {
+                     document.getElementById('saida').innerHTML +=(array[i]);
+                    
+                }
+            }
+           
+         }   
+
+
+          function ListarH(){
+            for (let i = 0; i < array.length;i++){
+                if(array[i].genero == "m"){
+                document.getElementById('saida').innerHTML +=(array[i]);   
+
+                }
+            }
+          }   
+           function ListarADLC(){
+                for (let i = 0; i < array.length;i++){
+                    if(idad >= 15 && idad<=20) 
+                    document.getElementById('saida').innerHTML +=(array[i]);
+   
+           }      
+            }  
+            function ListarA(){
+                for (let i = 0; i < array.length;i++){
+                    if(idad >= 22 && idad<=63) 
+                    document.getElementById('saida').innerHTML +=(array[i]);
+   
+           }      
+            }  
+            function ListarI(){
+                for (let i = 0; i < array.length;i++){
+                    if(idad > 63) 
+                    document.getElementById('saida').innerHTML +=(array[i]);
+   
+           }      
+            } 
+
+            function ListarC(){
+                for (let i = 0; i < array.length;i++){
+                    if(idad >= 0 && idad<=14) 
+                    document.getElementById('saida').innerHTML +=(array[i]);
+   
+           }      
+            }   
+
+
+          }
+
+
+         }  
+               
+
+
+
+
+
+    </script>
+
+    </body>
+ </html>   
+   
