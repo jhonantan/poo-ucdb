@@ -1,0 +1,106 @@
+<html>
+
+    <head>
+        <script>
+
+            const verificaDias = (data1, data2) =>{
+                let diffHr = Math.abs(data2.getTime() - data1.getTime());
+                let diferencaDias = Math.ceil(diffHr / (1000 * 3600 * 24)); 
+                return diferencaDias;
+            }
+            
+                 function calcula(e){
+                e.preventDefault();
+                
+                let jurosPorMes = document.getElementById('juroMes').value;
+                let multa = parseFloat(document.getElementById('multaAtraso').value);
+                let dataHoje = new Date(document.getElementById('DataHoje').value);
+                let valor = parseFloat(document.getElementById('valorMen').value);
+                let dataVencimento = new Date(document.getElementById('DataVencimento').value);
+                let html = "";
+                if(dataVencimento > dataHoje)
+                    html = `<tr><td>0</td><td>0</td><td>0</td><td>R$${valor}</td></tr>`;
+                else{
+                    let diferencaDias = verificaDias(dataVencimento, dataHoje);
+                    if(diferencaDias > 0)
+                    {
+
+
+                        let juroPorDia = (parseFloat(jurosPorMes/30)/100).toPrecision(1);
+                        let jurosTotal = parseFloat(diferencaDias * (juroPorDia * valor));
+                        let total = jurosTotal + ((multa/100)*valor) + valor;
+                        html = `<tr><td>${multa}</td><td>${diferencaDias}</td><td>R$${jurosTotal}</td><td>R$${total}</td></tr>`;
+                    }
+                    else
+                        html = `<tr><td>0</td><td>0</td><td>0</td><td>R$${valor}</td></tr>`;
+                }
+                        
+                
+                document.getElementById('corpo-tabela').innerHTML = html;
+                
+  
+
+
+
+            }
+
+        </script>
+
+
+     </head>   
+    <body>
+       <form onsubmit="calcula(event);" class="form"> 
+            Juros por mês
+        <input type="number" id="juroMes" value=""required>
+            Multa
+        <input type="number" id="multaAtraso" value="">
+            Data Hoje
+        <input type="date" id="DataHoje" value="">
+
+            Valor
+        <input type="number" id="valorMen" value="">
+            Data de Vencimento
+        <input type="date" id="DataVencimento" >
+
+
+        <button type="submit" id="btn"> Calcular</button>
+       </form> 
+
+        
+           <table >
+                        <thead>
+                            <th>
+                                Multa
+                                <br>
+                                
+                            </th>
+
+                            <th>
+                                Dias atrasados
+                                <br>
+                            </th>
+
+                            <th>
+                                Juros
+                                <br>
+                            </th>
+
+                            <th>
+                                Total
+                            </th>
+
+                        </thead>
+                        <tbody id="corpo-tabela">
+
+                        </tbody> 
+                    </table> 
+        
+            
+            
+                 
+    </body>
+      
+
+
+    <div></div>
+</html>
